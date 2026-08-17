@@ -2,164 +2,212 @@
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#4f2db7" />
-  <title>Python Drone Mission | صيف طويق للدرونز</title>
+  <title>Python Drone Move Challenge</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-<header class="topbar">
-  <div class="brand">
-    <img src="assets/tuwaiq-logo.png" alt="أكاديمية طويق" onerror="this.style.display='none'">
-    <div><span>صيف طويق للدرونز</span><strong>Python Drone Mission</strong></div>
-  </div>
-  <div class="top-actions">
-    <button id="soundBtn" class="ghost-btn">🔊</button>
-    <button id="homeBtn" class="ghost-btn">⌂ البداية</button>
-  </div>
-</header>
-
-<main class="shell">
-<section id="startScreen" class="screen active">
-  <div class="hero">
-    <div class="hero-copy">
-      <span class="tag">لعبة برمجة تفاعلية</span>
-      <h1>برمج الدرون.<br>أنجز المهمة.</h1>
-      <p>استخدم أوامر تشبه <strong>Python</strong> لبناء برنامجك، شغّله، شاهد الدرون ينفذ الأوامر، ثم أصلح الكود إذا لم تنجح المهمة.</p>
-
-      <div class="learning-flow">
-        <div><b>1</b><span>المشكلة</span></div><i>←</i>
-        <div><b>2</b><span>الحل</span></div><i>←</i>
-        <div><b>3</b><span>الكود</span></div><i>←</i>
-        <div><b>4</b><span>التجربة</span></div><i>←</i>
-        <div><b>5</b><span>Debug</span></div>
-      </div>
-
-      <div class="difficulty-preview">
-        <div class="difficulty-card easy"><span>1–3</span><strong>مبتدئ</strong><small>أوامر بسيطة</small></div>
-        <div class="difficulty-card medium"><span>4–6</span><strong>مستكشف</strong><small>عوائق ودوران</small></div>
-        <div class="difficulty-card advanced"><span>7–9</span><strong>مبرمج</strong><small>تكرار وDebug</small></div>
-        <div class="difficulty-card expert"><span>10–12</span><strong>خبير</strong><small>مهمات مركبة</small></div>
-      </div>
-
-      <label for="teamInput">اسم الفريق <small>(اختياري)</small></label>
-      <input id="teamInput" maxlength="24" placeholder="مثال: فريق الصقور" />
-      <button id="startBtn" class="primary-btn big-btn">ابدأ المهمة 🚁</button>
-    </div>
-
-    <div class="hero-visual">
-      <div class="orbit orbit-1"></div><div class="orbit orbit-2"></div>
-      <div class="hero-drone">
-        <span class="arm a1"></span><span class="arm a2"></span><span class="arm a3"></span><span class="arm a4"></span>
-        <span class="body"></span>
-        <span class="rotor r1"></span><span class="rotor r2"></span><span class="rotor r3"></span><span class="rotor r4"></span>
-        <span class="camera"></span>
-      </div>
-      <div class="floating-code">
-        <code>drone.takeoff()</code>
-        <code>drone.move_forward(50)</code>
-        <code>drone.land()</code>
+  <header class="topbar">
+    <div class="brand">
+      <img src="assets/tuwaiq-logo.png" alt="أكاديمية طويق" onerror="this.style.display='none'">
+      <div>
+        <span>صيف طويق للدرونز</span>
+        <strong>Python Drone Challenge</strong>
       </div>
     </div>
-  </div>
-</section>
 
-<section id="gameScreen" class="screen">
-  <div class="status-row">
-    <div class="team-chip" id="teamChip">فريق الدرون</div>
-    <div class="level-track" id="levelTrack"></div>
-    <div class="score-chip">⭐ <span id="starScore">0</span></div>
-  </div>
+    <div class="top-actions">
+      <button id="soundBtn" class="ghost-btn" type="button">🔊</button>
+      <button id="homeBtn" class="ghost-btn" type="button">⌂ البداية</button>
+    </div>
+  </header>
 
-  <div class="game-grid">
-    <aside class="mission-panel card">
-      <div class="level-heading">
-        <div class="level-number" id="levelNumber">1</div>
-        <div><span id="difficultyBadge" class="difficulty-badge easy">مبتدئ</span><h2 id="levelTitle">المهمة الأولى</h2></div>
-      </div>
+  <main class="shell">
+    <!-- START -->
+    <section id="startScreen" class="screen active">
+      <div class="hero">
+        <div class="hero-copy">
+          <span class="tag">تحدي برمجي تفاعلي</span>
+          <h1>كم حركة تحتاج<br>لإنقاذ المهمة؟</h1>
 
-      <div class="mission-brief"><span>🎯 المهمة</span><p id="missionText"></p></div>
-      <div class="goal-row"><span>الهدف</span><strong id="goalText"></strong></div>
+          <p>
+            نفس فكرة برنامج Python الأصلي: أنت تتحكم بالدرون مباشرة.
+            أقلِع، تحرك، تجنب العوائق، وصل إلى الهدف، ثم اهبط.
+          </p>
 
-      <div class="palette-title"><strong>الأوامر المتاحة</strong><small>اسحب الأوامر إلى برنامجك</small></div>
-      <div id="commandPalette" class="command-palette"></div>
+          <div class="rules">
+            <div><span>🚁</span><strong>SPACE</strong><small>إقلاع / هبوط</small></div>
+            <div><span>⬆️</span><strong>↑</strong><small>تقدم</small></div>
+            <div><span>↶ ↷</span><strong>← →</strong><small>دوران</small></div>
+            <div><span>↻</span><strong>R</strong><small>إعادة المستوى</small></div>
+          </div>
 
-      <div class="help-actions">
-        <button id="hintBtn" class="soft-btn">💡 تلميح</button>
-        <button id="solutionBtn" class="soft-btn">👀 أول خطوة</button>
-      </div>
-      <div id="feedback" class="feedback" aria-live="polite"></div>
-    </aside>
+          <div class="stage-preview">
+            <div class="stage-card easy"><b>1–3</b><strong>مبتدئ</strong><small>تعلم الحركة</small></div>
+            <div class="stage-card medium"><b>4–6</b><strong>مستكشف</strong><small>تجنب العوائق</small></div>
+            <div class="stage-card hard"><b>7–9</b><strong>متقدم</strong><small>مسارات أطول</small></div>
+            <div class="stage-card expert"><b>10–12</b><strong>خبير</strong><small>تحديات دقيقة</small></div>
+          </div>
 
-    <section class="arena-panel card">
-      <div class="panel-header">
-        <div><span class="kicker">MISSION SIMULATOR</span><h2>ساحة المهمة</h2></div>
-        <div class="sim-badges"><span id="batteryBadge">🔋 100%</span><span id="movesBadge">Moves: 0</span></div>
-      </div>
-      <div class="arena-wrap">
-        <canvas id="arenaCanvas" width="720" height="540"></canvas>
-        <div id="arenaMessage" class="arena-message hidden"></div>
-      </div>
-      <div class="arena-controls">
-        <button id="runBtn" class="primary-btn">▶ تشغيل البرنامج</button>
-        <button id="stepBtn" class="soft-btn">⏭ خطوة</button>
-        <button id="resetBtn" class="soft-btn">↻ إعادة</button>
+          <label for="teamInput">اسم الفريق <small>(اختياري)</small></label>
+          <input id="teamInput" maxlength="24" placeholder="مثال: فريق الصقور">
+
+          <button id="startBtn" class="primary-btn big-btn" type="button">ابدأ التحدي 🚁</button>
+        </div>
+
+        <div class="hero-visual">
+          <div class="pulse-ring p1"></div>
+          <div class="pulse-ring p2"></div>
+          <div class="hero-grid">
+            <span class="start-pad">START</span>
+            <span class="target-pad">TARGET</span>
+            <span class="block b1">⚠</span>
+            <span class="block b2">⚠</span>
+            <span class="mini-drone">▲</span>
+          </div>
+          <div class="hero-score">
+            <span>MOVES</span>
+            <strong>?</strong>
+            <small>Can you beat the best route?</small>
+          </div>
+        </div>
       </div>
     </section>
 
-    <aside class="code-panel card">
-      <div class="panel-header compact">
-        <div><span class="kicker">YOUR PROGRAM</span><h2>برنامجك</h2></div>
-        <button id="clearBtn" class="tiny-btn">مسح الكل</button>
+    <!-- GAME -->
+    <section id="gameScreen" class="screen">
+      <div class="status-row">
+        <div class="team-chip" id="teamChip">فريق الدرون</div>
+        <div class="level-track" id="levelTrack"></div>
+        <div class="score-chip">⭐ <span id="totalStars">0</span></div>
       </div>
 
-      <div id="programDropzone" class="program-dropzone">
-        <div id="emptyProgram" class="empty-program"><span>＋</span><strong>اسحب الأوامر هنا</strong><small>يمكنك إعادة ترتيبها بالسحب</small></div>
-        <div id="programList" class="program-list"></div>
+      <div class="game-grid">
+        <aside class="mission-card card">
+          <div class="level-head">
+            <div class="level-number" id="levelNumber">1</div>
+            <div>
+              <span id="difficultyBadge" class="difficulty-badge easy">🌱 مبتدئ</span>
+              <h2 id="levelTitle">المهمة الأولى</h2>
+            </div>
+          </div>
+
+          <div class="mission-box">
+            <span>🎯 المهمة</span>
+            <p id="missionText"></p>
+          </div>
+
+          <div class="stats-grid">
+            <div>
+              <span>الحركات</span>
+              <strong id="moveCount">0</strong>
+            </div>
+            <div>
+              <span>أفضل مسار</span>
+              <strong id="parCount">?</strong>
+            </div>
+            <div>
+              <span>المحاولات</span>
+              <strong id="attemptCount">1</strong>
+            </div>
+          </div>
+
+          <div class="status-card">
+            <span>حالة الدرون</span>
+            <strong id="flightStatus">على الأرض</strong>
+          </div>
+
+          <div class="control-help">
+            <h3>التحكم</h3>
+            <div class="key-grid">
+              <button class="key-btn takeoff-key" data-action="space">SPACE<small>إقلاع / هبوط</small></button>
+              <button class="key-btn" data-action="up">↑<small>تقدم</small></button>
+              <button class="key-btn" data-action="left">←<small>يسار</small></button>
+              <button class="key-btn" data-action="right">→<small>يمين</small></button>
+            </div>
+          </div>
+
+          <button id="resetBtn" class="soft-btn full-btn" type="button">↻ إعادة المستوى</button>
+          <div id="feedback" class="feedback"></div>
+        </aside>
+
+        <section class="arena-card card">
+          <div class="arena-header">
+            <div>
+              <span class="kicker">PYTHON DRONE SIMULATOR</span>
+              <h2>ساحة المهمة</h2>
+            </div>
+            <div class="badges">
+              <span id="batteryBadge">🔋 100%</span>
+              <span id="timerBadge">⏱ 00:00</span>
+            </div>
+          </div>
+
+          <div class="arena-wrap">
+            <canvas id="arenaCanvas" width="800" height="600"></canvas>
+            <div id="arenaToast" class="arena-toast hidden"></div>
+          </div>
+
+          <div class="python-strip">
+            <div>
+              <span>آخر أمر Python</span>
+              <code id="pythonCommand"># ابدأ بالإقلاع</code>
+            </div>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <!-- COMPLETE -->
+    <section id="completeScreen" class="screen">
+      <div class="complete-card card">
+        <div class="trophy">🏆</div>
+        <span class="tag">اكتملت جميع المهمات</span>
+        <h1>Drone Mission Expert!</h1>
+        <p id="completeText"></p>
+
+        <div class="final-stats">
+          <div><strong id="finalStars">0</strong><span>نجوم</span></div>
+          <div><strong id="finalMoves">0</strong><span>إجمالي الحركات</span></div>
+          <div><strong>12</strong><span>مهمة</span></div>
+        </div>
+
+        <button id="playAgainBtn" class="primary-btn big-btn" type="button">إعادة التحدي</button>
+      </div>
+    </section>
+  </main>
+
+  <!-- LEVEL RESULT -->
+  <div id="resultModal" class="modal">
+    <div class="modal-card">
+      <div class="success-icon">✓</div>
+      <span id="resultBadge" class="difficulty-badge easy">مبتدئ</span>
+      <h2 id="resultTitle">تمت المهمة!</h2>
+      <p id="resultText"></p>
+
+      <div class="result-score">
+        <div><span>حركاتك</span><strong id="resultMoves">0</strong></div>
+        <div><span>أفضل مسار</span><strong id="resultPar">0</strong></div>
       </div>
 
-      <div class="code-editor">
-        <div class="editor-topbar"><div class="editor-dots"><i></i><i></i><i></i></div><span>mission.py</span></div>
-        <pre id="pythonPreview"><code></code></pre>
-      </div>
-      <div class="code-note"><span>💡</span><p>البلوكات تتحول إلى أوامر Python حقيقية.</p></div>
-    </aside>
-  </div>
-</section>
-
-<section id="completeScreen" class="screen">
-  <div class="complete-card card">
-    <div class="trophy">🏆</div><span class="tag">المهمة مكتملة</span>
-    <h1>Python Drone Expert!</h1><p id="completeText"></p>
-    <div class="final-stats">
-      <div><strong>12 / 12</strong><span>مستويات</span></div>
-      <div><strong id="finalStars">0</strong><span>نجوم</span></div>
-      <div><strong>4</strong><span>مراحل</span></div>
+      <div id="earnedStars" class="earned-stars">⭐⭐⭐</div>
+      <p id="resultMessage" class="result-message"></p>
+      <button id="nextBtn" class="primary-btn" type="button">المستوى التالي ←</button>
     </div>
-    <div class="final-code"><code>print("Mission Complete 🚁")</code></div>
-    <button id="playAgainBtn" class="primary-btn big-btn">إعادة اللعب</button>
   </div>
-</section>
-</main>
 
-<div id="successModal" class="modal">
-  <div class="modal-card">
-    <div class="success-icon">✓</div>
-    <span id="successBadge" class="difficulty-badge easy">مبتدئ</span>
-    <h2 id="successTitle">تمت المهمة!</h2><p id="successText"></p>
-    <div id="earnedStars" class="earned-stars">⭐⭐⭐</div>
-    <button id="nextBtn" class="primary-btn">المستوى التالي ←</button>
+  <!-- STAGE -->
+  <div id="stageModal" class="modal">
+    <div class="modal-card">
+      <div id="stageIcon" class="stage-icon">⚡</div>
+      <span class="tag">مرحلة جديدة</span>
+      <h2 id="stageTitle">مستكشف</h2>
+      <p id="stageText"></p>
+      <button id="stageContinueBtn" class="primary-btn" type="button">ابدأ المرحلة</button>
+    </div>
   </div>
-</div>
 
-<div id="stageModal" class="modal">
-  <div class="modal-card">
-    <div id="stageIcon" class="stage-icon">⚡</div><span class="tag">مرحلة جديدة</span>
-    <h2 id="stageTitle">مستكشف</h2><p id="stageText"></p>
-    <button id="stageContinueBtn" class="primary-btn">ابدأ المرحلة</button>
-  </div>
-</div>
-
-<script src="game.js"></script>
+  <script src="game.js"></script>
 </body>
 </html>
